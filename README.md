@@ -1,4 +1,4 @@
-![logo](https://raw.githubusercontent.com/vautheman/Fabulous/main/.github/images/fabulous-bg.png?token=GHSAT0AAAAAAB6JTDN3NBSSDLFQZZF5XHS6Y7FG5WQ)
+![logo](https://github.com/vautheman/Fabulous/blob/main/.github/images/fabulous-bg.png?raw=true)
 
 # 🤖 Fabulous (Discord Music Bot)
 
