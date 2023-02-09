@@ -1,24 +1,20 @@
-![Node build](https://github.com/eritislami/evobot/actions/workflows/node.yml/badge.svg)
-![Docker build](https://github.com/eritislami/evobot/actions/workflows/docker.yml/badge.svg)
-[![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
+![logo](https://raw.githubusercontent.com/vautheman/Fabulous/main/.github/images/fabulous-bg.png?token=GHSAT0AAAAAAB6JTDN3NBSSDLFQZZF5XHS6Y7FG5WQ)
 
-![logo](https://repository-images.githubusercontent.com/186841818/8aa95700-7730-11e9-84be-e80f28520325)
+# 🤖 Fabulous (Discord Music Bot)
 
-# 🤖 EvoBot (Discord Music Bot)
+> EvoBot est un robot musical Discord construit avec TypeScript, discord.js et utilise le gestionnaire de commandes de [discordjs.guide](https://discordjs.guide)
 
-> EvoBot is a Discord Music Bot built with TypeScript, discord.js & uses Command Handler from [discordjs.guide](https://discordjs.guide)
-
-## Requirements
+## Éléments requis
 
 1. Discord Bot Token **[Guide](https://discordjs.guide/preparations/setting-up-a-bot-application.html#creating-your-bot)**  
-   1.1. Enable 'Message Content Intent' in Discord Developer Portal
-2. Node.js 16.11.0 or newer
+   1.1. Activez l'option "Message Content Intent" sur le portail des développeurs de Discord.
+2. Approuvé sur Node.js 16.11.0
 
-## 🚀 Getting Started
+## 🚀 Pour commencer
 
 ```sh
-git clone https://github.com/eritislami/evobot.git
-cd evobot
+git clone https://github.com/vautheman/Fabulous.git
+cd Fabulous
 npm install
 ```
 
