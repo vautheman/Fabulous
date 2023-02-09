@@ -2,7 +2,7 @@
 
 # 🤖 Fabulous (Discord Music Bot)
 
-> EvoBot est un robot musical Discord construit avec TypeScript, discord.js et utilise le gestionnaire de commandes de [discordjs.guide](https://discordjs.guide)
+> Fabulous est un robot musical Discord construit avec TypeScript, discord.js et utilise le gestionnaire de commandes de [discordjs.guide](https://discordjs.guide)
 
 ## Éléments requis
 
@@ -18,115 +18,145 @@ cd Fabulous
 npm install
 ```
 
-After installation finishes follow configuration instructions then run `npm run start` to start the bot.
+Une fois l'installation terminée, suivez les instructions de configuration puis exécutez `npm run start` pour démarrer le bot.
 
 ## ⚙️ Configuration
 
-Copy or Rename `config.json.example` to `config.json` and fill out the values:
+Copiez ou Renommez `config.json.example` en `config.json` et remplissez les valeurs :
 
-⚠️ **Note: Never commit or share your token or api keys publicly** ⚠️
+⚠️ **Note: Ne jamais communiquer ou partager publiquement votre jeton ou vos clés api** ⚠️
 
 ```json
 {
-  "TOKEN": "",
+  "TOKEN": "", // Votre Token Discord
   "MAX_PLAYLIST_SIZE": 10,
-  "PREFIX": "!",
+  "PREFIX": "/", // Prefix permettant d'exécuter les commandes discord
   "PRUNING": false,
-  "LOCALE": "en",
+  "LOCALE": "fr",
   "DEFAULT_VOLUME": 100,
   "STAY_TIME": 30
 }
 ```
 
-## 🐬 Docker Configuration
+## 🐬 Configuration de Docker
 
-For those who would prefer to use our [Docker container](https://hub.docker.com/repository/docker/eritislami/evobot), you may provide values from `config.json` as environment variables.
+Le fichier Dockerfile contient les informations suivante veillant au bon fonctionnement du bot. 
 
 ```shell
-docker run -e "TOKEN=<discord-token>" eritislami/evobot
+FROM node:16.14
+WORKDIR /home/fabulous
+COPY package*.json ./
+RUN npm install
+COPY . .
+CMD ["npm", "run", "start"]
 ```
 
-## 📝 Features & Commands
+Exécuter la commande suivante pour initialiser le container Docker
 
-> Note: The default prefix is '!'
+```shell
+docker build . -t fabulous
+```
 
-- 🎶 Play music from YouTube via url
+Pour exécuter le container docker du bot Fabulous, taper la ligne suivante :
 
-`!play https://www.youtube.com/watch?v=GLvohMXgcBo`
+```shell
+docker run -d --restart unless-stopped fabulous
+```
 
-- 🔎 Play music from YouTube via search query
+> Note: --restart unless-stopped permet au container docker de démarrer automatiquement au redémarrage de la machine 
 
-`!play under the bridge red hot chili peppers`
+Pour arreter le container :
 
-- 🔎 Search and select music to play
+```shell
+docker stop fabulous
+```
 
-`!search Pearl Jam`
+Pour mettre à jour le container :
 
-Reply with song number or numbers seperated by comma that you wish to play
+```shell
+git pull
+docker build . -t fabulous
+```
 
-Examples: `1` or `1,2,3`
+## 📝 Fonctionnalités et commandes
 
-- 📃 Play youtube playlists via url
+> Note : Le préfixe par défaut est '/'.
 
-`!playlist https://www.youtube.com/watch?v=YlUKcNNmywk&list=PL5RNCwK3GIO13SR_o57bGJCEmqFAwq82c`
+- 🎶 Lire la musique de YouTube via url
 
-- 🔎 Play youtube playlists via search query
+`/play https://www.youtube.com/watch?v=GLvohMXgcBo`
 
-`!playlist linkin park meteora`
+- 🔎 Écouter de la musique depuis YouTube via une requête de recherche
 
-- Now Playing (!np)
-- Queue system (!queue, !q)
-- Loop / Repeat (!loop)
-- Shuffle (!shuffle)
-- Volume control (!volume, !v)
-- Lyrics (!lyrics, !ly)
+`/play under the bridge red hot chili peppers`
+
+- 🔎 Rechercher et sélectionner la musique à écouter
+
+`/search Pearl Jam`
+
+Répondez en indiquant le numéro de la chanson ou les numéros séparés par une virgule que vous souhaitez écouter.
+
+Exemples: `1` ou `1,2,3`
+
+- 📃 Lecture de listes de lecture youtube via url
+
+`/playlist https://www.youtube.com/watch?v=YlUKcNNmywk&list=PL5RNCwK3GIO13SR_o57bGJCEmqFAwq82c`
+
+- 🔎 Lecture de listes de lecture youtube via une requête de recherche
+
+`/playlist linkin park meteora`
+
+- Lecture en cours (!np)
+- Système de file d'attente (!queue, !q)
+- Boucle / Répétition (!loop)
+- Aléatoire (!shuffle)
+- Contrôle du volume (!volume, !v)
+- Paroles (!lyrics, !ly)
 - Pause (!pause)
-- Resume (!resume, !r)
-- Skip (!skip, !s)
-- Skip to song # in queue (!skipto, !st)
-- Move a song in the queue (!move, !mv)
-- Remove song # from queue (!remove, !rm)
-- Show ping to Discord API (!ping)
-- Show bot uptime (!uptime)
-- Toggle pruning of bot messages (!pruning)
-- Help (!help, !h)
-- Command Handler from [discordjs.guide](https://discordjs.guide/)
-- Media Controls via Reactions
+- Reprise (!resume, !r)
+- Sauter (!skip, !s)
+- Passer à la chanson # dans la file d'attente (!skipto, !st)
+- Déplacer un morceau dans la file d'attente (!move, !mv)
+- Retirer le morceau # de la file d'attente (!remove, !rm)
+- Afficher le ping vers l'API Discord (!ping)
+- Afficher le temps de fonctionnement du bot (!uptime)
+- Basculer l'élagage des messages du bot (!pruning)
+- Aide (!help, !h)
+- Gestionnaire de commandes de [discordjs.guide](https://discordjs.guide/)
+- Contrôles des médias via Reactions
 
-![reactions](https://i.imgur.com/0hdUX1C.png)
+## 🌎 Langues
 
-## 🌎 Locales
+Les langues actuellement disponibles sont :
 
-Currently available locales are:
+- Anglais (en)
+- Arabe (ar)
+- Portugais brésilien (pt_br)
+- Tchèque (cs)
+- Néerlandais (nl)
+- Français (fr)
+- Allemand (de)
+- Grec (el)
+- Indonésien (id)
+- Italien (it)
+- Japonais (ja)
+- Coréen (ko)
+- Minionais (mi)
+- Persan (fa)
+- polonais (pl)
+- Russe (ru)
+- Chinois simplifié (zh_cn)
+- Mandarin de Singapour (zh_sg)
+- Espagnol (es)
+- Suédois (sv)
+- Chinois traditionnel (zh_tw)
+- Thaïlandais (th)
+- Turc (tr)
+- Ukrainien (uk)
+- vietnamien (vi)
+- Pour les langues, veuillez utiliser le format à deux lettres [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes).
 
-- English (en)
-- Arabic (ar)
-- Brazilian Portuguese (pt_br)
-- Czech (cs)
-- Dutch (nl)
-- French (fr)
-- German (de)
-- Greek (el)
-- Indonesian (id)
-- Italian (it)
-- Japanese (ja)
-- Korean (ko)
-- Minionese (mi)
-- Persian (fa)
-- Polish (pl)
-- Russian (ru)
-- Simplified Chinese (zh_cn)
-- Singaporean Mandarin (zh_sg)
-- Spanish (es)
-- Swedish (sv)
-- Traditional Chinese (zh_tw)
-- Thai (th)
-- Turkish (tr)
-- Ukrainian (uk)
-- Vietnamese (vi)
-- Check [Contributing](#-contributing) if you wish to help add more languages!
-- For languages please use [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) two letter format
-
+<!-- 
 ## 🤝 Contributing
 
 1. [Fork the repository](https://github.com/eritislami/evobot/fork)
@@ -135,4 +165,4 @@ Currently available locales are:
 4. Stage changes `git add .`
 5. Commit your changes: `cz` OR `npm run commit` do not use `git commit`
 6. Push to the branch: `git push origin my-new-feature`
-7. Submit a pull request
+7. Submit a pull request -->
