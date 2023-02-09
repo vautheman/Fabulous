@@ -128,6 +128,7 @@ export class MusicQueue {
 
     if (this.waitTimeout !== null) return;
 
+    /* Le bot quitte le salon apres STAY_TIME dans config.json */
     this.waitTimeout = setTimeout(() => {
       if (this.connection.state.status !== VoiceConnectionStatus.Destroyed) {
         try {

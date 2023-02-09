@@ -32,7 +32,7 @@ export default {
 
     const url = args[0];
 
-    const loadingReply = await message.reply("⏳ Loading...");
+    const loadingReply = await message.reply("⏳ Je cherche ta merde...");
 
     // Start the playlist if playlist url was provided
     if (playlistPattern.test(args[0])) {

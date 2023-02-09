@@ -29,7 +29,7 @@ Client.on("message", async message => {
         let args = message.content.split(' ').slice(1);
 
         //If no args is provided
-        if (!args[0]) return message.channel.send(`⛔ | ${message.author}, Please enter the YouTube URL of a song !`);
+        if (!args[0]) return message.channel.send(`⛔ | ${message.author}, Vas-y met une lien ou un titre batard !`);
 
         //New infos & stream
         let infos;
@@ -37,16 +37,16 @@ Client.on("message", async message => {
 
         try {
             //The bot is trying to find the music provided
-            stream = YTDL(args.join(" "), { encoderArgs: ['-af','dynaudnorm=f=200'], fmt: 'mp3', opusEncoded: false });
+            stream = YTDL(args.join(" "), { encoderArgs: ['-af', 'dynaudnorm=f=200'], fmt: 'mp3', opusEncoded: false });
             infos = await ScrapeYt.search(args.join(" "));
         } catch (e) {
             //If the music is not found
-            return message.channel.send(`⛔ | ${message.author}, I didn't find anything for : ${args.join(" ")} !`);
+            return message.channel.send(`⛔ | ${message.author}, Je n'ai rien trouvé pour : ${args.join(" ")} !`);
         }
 
         try {
             //Confirmation message
-            message.channel.send(`:notes: | ${message.author},  I'll try to send ${infos[0].title} when the download is finished...`);
+            message.channel.send(`:notes: | ${message.author},  Je vais essayer d'envoyer ${infos[0].title} quand le téléchargement sera terminé...`);
 
             //Saving the file in the folder 'download'
             stream.pipe(createWriteStream(__dirname + `/download/${infos[0].title}.mp3`)).on('finish', () => {
@@ -55,13 +55,13 @@ Client.on("message", async message => {
                 try {
                     message.channel.send(`🎵 | ${message.author}, music : ${infos[0].title} in mp3.`, new Discord.MessageAttachment(__dirname + `/download/${infos[0].title}.mp3`, `${infos[0].title}.mp3`))
                 } catch (e) {
-                    return message.channel.send(`⛔ | ${message.author}, I didn't manage to send the music... maybe it's too heavy for Discord ? Or maybe I don't have the required permissions to upload this type of file on this server...`);
+                    return message.channel.send(`⛔ | ${message.author}, Je n'ai pas réussi à envoyer la musique... peut-être est-elle trop lourde pour Discord ? Ou peut-être que je n'ai pas les permissions requises pour télécharger ce type de fichier sur ce serveur...`);
                 }
 
             })
         } catch (e) {
             //If the music is not found
-            return message.channel.send(`⛔ | ${message.author}, I didn't find anything for : ${args.join(" ")} ! Maybe it is impossible to retrieve this music...`);
+            return message.channel.send(`⛔ | ${message.author}, Je n'ai rien trouvé pour : ${args.join(" ")} ! Peut-être est-il impossible de récupérer cette musique...`);
         }
     }
 
