@@ -1,0 +1,41 @@
+# Fichiers de configuration sensibles
+.env
+.env.local
+.env.production
+
+# Node.js
+node_modules/
+npm-debug.log
+yarn-error.log
+package-lock.json
+yarn.lock
+
+# Lavalink
+lavalink/*.jar
+lavalink/logs/
+lavalink/plugins/
+logs/
+
+# Données
+data/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Système
+.DS_Store
+Thumbs.db
+
+# PM2
+.pm2/
+
+# Docker
+.dockerignore
+
+# Fichiers temporaires
+*.tmp
+*.temp

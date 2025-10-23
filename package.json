@@ -1,0 +1,23 @@
+{
+  "name": "fabulous",
+  "version": "2.0.0",
+  "description": "Bot Discord de musique avec Lavalink et yt-dlp",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node --watch src/index.js",
+    "deploy": "node src/deploy-commands.js"
+  },
+  "keywords": ["discord", "music", "lavalink", "yt-dlp"],
+  "author": "",
+  "license": "MIT",
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "dependencies": {
+    "discord.js": "^14.16.3",
+    "lavalink-client": "^2.4.0",
+    "dotenv": "^16.4.5"
+  }
+}

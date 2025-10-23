@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  music-bot:
+    build: .
+    container_name: discord-music-bot
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=production
+      - DISCORD_TOKEN=${DISCORD_TOKEN}
+      - CLIENT_ID=${CLIENT_ID}
+      - GUILD_ID=${GUILD_ID:-}
+      - LAVALINK_HOST=localhost
+      - LAVALINK_PORT=2333
+      - LAVALINK_PASSWORD=${LAVALINK_PASSWORD:-youshallnotpass}
+      - TZ=Europe/Paris
+    volumes:
+      - lavalink-logs:/app/lavalink/logs
+      - bot-data:/app/data
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:2333"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 90s
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: 1G
+        reservations:
+          cpus: '0.5'
+          memory: 256M
+
+volumes:
+  lavalink-logs:
+    driver: local
+  bot-data:
+    driver: local
