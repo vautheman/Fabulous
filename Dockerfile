@@ -21,12 +21,11 @@ RUN npm ci --only=production
 COPY . .
 
 # Téléchargement de Lavalink
-RUN mkdir -p lavalink && \
-    cd lavalink && \
+RUN cd lavalink && \
     wget -q https://github.com/lavalink-devs/Lavalink/releases/download/4.0.8/Lavalink.jar
 
 # Copie de la configuration Lavalink
-COPY application.yml lavalink/
+# COPY application.yml lavalink/
 
 # Création du script de démarrage
 RUN echo '#!/bin/bash\n\
