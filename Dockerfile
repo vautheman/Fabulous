@@ -15,7 +15,7 @@ RUN pip3 install yt-dlp --break-system-packages
 
 # Copie et installation des dépendances Node.js
 COPY package*.json ./
-RUN npm ci --only=production
+# RUN npm ci --only=production
 
 # Copie du code source
 COPY . .
