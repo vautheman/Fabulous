@@ -44,8 +44,7 @@ BOT_PID=$!\n\
 trap "echo \"Arrêt en cours...\"; kill $BOT_PID $LAVALINK_PID; exit" SIGTERM SIGINT\n\
 \n\
 # Attendre les processus\n\
-wait' > /app/start.sh && \
-    chmod +x /app/start.sh
+wait'
 
 # Création du dossier logs
 RUN mkdir -p /app/lavalink/logs
@@ -55,4 +54,4 @@ EXPOSE 2333
 HEALTHCHECK --interval=30s --timeout=10s --start-period=60s --retries=3 \
   CMD node -e "require('http').get('http://localhost:2333', (r) => process.exit(r.statusCode === 200 ? 0 : 1))"
 
-CMD ["/app/start.sh"]
+CMD ["npm run start"]
