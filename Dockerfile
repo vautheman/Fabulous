@@ -29,24 +29,8 @@ RUN mkdir -p lavalink && \
 COPY application.yml lavalink/
 
 # Création du script de démarrage
-RUN echo '#!/bin/bash\n\
-echo "🚀 Démarrage de Lavalink..."\n\
-java -Xmx512M -Xms256M -jar /app/lavalink/Lavalink.jar &\n\
-LAVALINK_PID=$!\n\
-\n\
-echo "⏳ Attente de Lavalink (30s)..."\n\
-sleep 30\n\
-\n\
-echo "🤖 Démarrage du bot Discord..."\n\
-node src/index.js &\n\
-BOT_PID=$!\n\
-\n\
-# Gestion des signaux pour arrêt propre\n\
-trap "echo \"Arrêt en cours...\"; kill $BOT_PID $LAVALINK_PID; exit" SIGTERM SIGINT\n\
-\n\
-# Attendre les processus\n\
-wait' > /app/start.sh && \
-    chmod +x /app/start.sh
+COPY start.sh /app
+RUN chmod +x /app/start.sh
 
 # Création du dossier logs
 RUN mkdir -p /app/lavalink/logs
