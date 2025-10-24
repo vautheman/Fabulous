@@ -38,6 +38,6 @@ RUN mkdir -p /app/lavalink/logs
 
 EXPOSE 2333
 
-HEALTHCHECK --interval=10s --timeout=5s --start-period=60s --retries=3 CMD curl -s -f -H "Authorization: youshallnotpass" http://localhost:2333/version > /dev/null || exit 1
+HEALTHCHECK --interval=10s --timeout=5s --start-period=120s --retries=5 CMD curl -s -f -H "Authorization: youshallnotpass" http://localhost:2333/version > /dev/null || exit 1
 
 CMD ["/app/start.sh"]
