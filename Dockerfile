@@ -15,17 +15,18 @@ RUN pip3 install yt-dlp --break-system-packages
 
 # Copie et installation des dépendances Node.js
 COPY package*.json ./
-# RUN npm ci --only=production
+RUN npm ci --only=production
 
 # Copie du code source
 COPY . .
 
 # Téléchargement de Lavalink
-RUN cd lavalink && \
+RUN mkdir -p lavalink && \
+    cd lavalink && \
     wget -q https://github.com/lavalink-devs/Lavalink/releases/download/4.0.8/Lavalink.jar
 
 # Copie de la configuration Lavalink
-# COPY application.yml lavalink/
+COPY application.yml lavalink/
 
 # Création du script de démarrage
 RUN echo '#!/bin/bash\n\
