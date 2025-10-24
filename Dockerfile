@@ -38,6 +38,6 @@ RUN mkdir -p /app/lavalink/logs
 EXPOSE 2333
 
 HEALTHCHECK --interval=30s --timeout=10s --start-period=60s --retries=3 \
-  CMD node -e "require('http').get('http://localhost:2333', (r) => process.exit(r.statusCode === 200 ? 0 : 1))"
+  CMD wget -qO- http://localhost:2333/version > /dev/null || exit 1
 
 CMD ["/app/start.sh"]
