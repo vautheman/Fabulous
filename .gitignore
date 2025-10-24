@@ -10,7 +10,7 @@ yarn-error.log
 package-lock.json
 yarn.lock
 
-# Lavalink
+# Lavalink - Ne pas commit le dossier entier, juste le .gitkeep
 lavalink/*.jar
 lavalink/logs/
 lavalink/plugins/
