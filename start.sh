@@ -30,7 +30,7 @@ cd /app
 # Attendre que Lavalink soit prêt (max 60 secondes)
 echo "⏳ Attente de Lavalink..."
 for i in {1..60}; do
-    if curl -sf http://localhost:2333 >/dev/null 2>&1; then
+    if curl -sf -H "Authorization: ${LAVALINK_PASSWORD}" http://localhost:2333/version >/dev/null 2>&1; then
         echo "✅ Lavalink prêt!"
         break
     fi

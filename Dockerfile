@@ -37,7 +37,7 @@ RUN mkdir -p /app/lavalink/logs
 
 EXPOSE 2333
 
-HEALTHCHECK --interval=30s --timeout=10s --start-period=60s --retries=3 \
-  CMD wget -qO- http://localhost:2333/version > /dev/null || exit 1
+HEALTHCHECK --interval=30s --timeout=10s --start-period=60s --retries=3 CMD wget -qO- http://localhost:2333/version > /dev/null || exit 1
+
 
 CMD ["/app/start.sh"]
