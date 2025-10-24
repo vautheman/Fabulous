@@ -6,7 +6,8 @@ RUN apk add --no-cache \
     py3-pip \
     openjdk17-jre \
     wget \
-    bash
+    bash \
+    curl
 
 WORKDIR /app
 
@@ -35,10 +36,8 @@ RUN chmod +x /app/start.sh
 # Création du dossier logs
 RUN mkdir -p /app/lavalink/logs
 
-RUN apk add --no-cache curl
-
 EXPOSE 2333
 
-HEALTHCHECK --interval=10s --timeout=5s --start-period=0s --retries=3 CMD curl -s -f -H "Authorization: youshallnotpass" http://localhost:2333/version > /dev/null || exit 1
+HEALTHCHECK --interval=10s --timeout=5s --start-period=30s --retries=3 CMD curl -s -f -H "Authorization: youshallnotpass" http://localhost:2333/version > /dev/null || exit 1
 
 CMD ["/app/start.sh"]
